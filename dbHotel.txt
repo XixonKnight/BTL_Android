@@ -1,0 +1,7 @@
+User: id,guid, username, gmail, password, address, dateOfBirth, gender, createdate, updatedate
+Area: id, Name, createdate
+Hotel: id, idArea, Name, address, createdate
+OptionHoltel: id, idHotel, optionName
+KindOfRoom: id, Name, createdate
+Room: id, idKindOfRoom, idHotel, price, 
+Image: id, idRoom, idHotel, idUser, link,
