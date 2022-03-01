@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 //        processLoginGoogle();
         init();
-        event();
+//        event();
     }
 
     private void init(){

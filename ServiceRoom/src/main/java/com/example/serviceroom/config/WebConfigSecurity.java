@@ -1,5 +1,6 @@
 package com.example.serviceroom.config;
 
+import com.example.serviceroom.config.jwt.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +24,9 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
     @Qualifier("userDetailsService")
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -35,7 +39,6 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     *
      * @param auth
      * @throws Exception
      */
@@ -45,21 +48,19 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     *
      * @param http
      * @throws Exception
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors();
-
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/oauth/**","/authenticate").permitAll()
+                .antMatchers("/oauth/**", "/api/user/authenticate", "/api/user/created").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

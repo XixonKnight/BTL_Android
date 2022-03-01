@@ -1,7 +1,5 @@
 package com.example.serviceroom.common;
 
-import com.example.foodservice.constants.Constants;
-import com.example.foodservice.constants.SearchParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -1062,24 +1060,6 @@ public class CommonUtil {
         return false;
     }
 
-    /**
-     * Builds the paginated query.
-     *
-     * @param baseQuery          the base query
-     * @param orderBy the pagination criteria
-     * @return the string
-     */
-    public static String buildPaginatedQuery(String baseQuery, String orderBy, SearchParams searchParams) {
-        if (!isEmpty(searchParams)) {
-            if (!"".equals(CommonUtil.NVL(searchParams.getOrderByClause()))) {
-                orderBy = searchParams.getOrderByClause();
-            }
-        }
-//		StringBuilder sb = new StringBuilder("#BASE_QUERY# #ORDER_CLASUE# ");
-//		String finalQuery = sb.toString().replaceAll("#BASE_QUERY#", baseQuery).replaceAll("#ORDER_CLASUE#",CommonUtil.NVL(orderBy));
-        String finalQuery =  baseQuery + " " + CommonUtil.NVL(orderBy);
-        return finalQuery;
-    }
 
     /**
      * Builds the paginated query.
@@ -1140,47 +1120,6 @@ public class CommonUtil {
             return null;
         }
     }
-
-    /**
-     * ham tra lai prefix dia chi email theo dinh dang chuan
-     *
-     * @param fullName ten nhap vao
-     * @return phan prefix cua dia chi email Nguyen van bien --> result biennv
-     */
-    public static String getPrefixEmailByFullName(String fullName) {
-        String emailResult = "";
-        if (!CommonUtil.isNullOrEmpty(fullName)) {
-            fullName = removeSign(fullName);
-            String[] str = fullName.trim().split(" ");
-            int strLen = str.length;
-            emailResult = str[strLen - 1];
-            for (int i = 0; i < strLen - 1; i++) {
-                String subStr = str[i].trim();
-                if (!"".equals(subStr)) {
-                    emailResult += subStr.substring(0, 1);
-                }
-            }
-        }
-        return emailResult.toLowerCase();
-    }
-
-    /**
-     * Loai bo cac dau, ten file chi chua cac ky tu ASCII.
-     *
-     * @param originalName
-     * @return String : xau sau khi bo dau
-     */
-    public static String removeSign(String originalName) {
-        if (originalName == null) {
-            return "";
-        }
-        String result = originalName;
-        for (int i = 0; i < SIGNED_ARR.length; i++) {
-            result = result.replaceAll(SIGNED_ARR[i], UNSIGNED_ARR[i]);
-        }
-        return result;
-    }
-
     /**
      * lay user id login
      *
@@ -1426,15 +1365,6 @@ public class CommonUtil {
         } else {
             return "en";
         }
-    }
-
-    public static String randomAlphaNumeric(int count) {
-        StringBuilder builder = new StringBuilder();
-        while (count-- != 0) {
-            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
-            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
-        }
-        return builder.toString();
     }
 
     /**

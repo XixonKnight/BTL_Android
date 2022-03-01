@@ -1,4 +1,4 @@
-package com.example.serviceroom.hotel.user;
+package com.example.serviceroom.hotel.user.bo;
 
 import lombok.Generated;
 import lombok.Getter;
