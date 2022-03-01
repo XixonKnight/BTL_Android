@@ -9,8 +9,10 @@ import android.util.Log;
 import android.widget.Button;
 
 import com.example.appbookingroom.R;
+import com.example.appbookingroom.common.CommonUtils;
 import com.example.appbookingroom.common.Constants;
 import com.example.appbookingroom.common.UserService;
+import com.example.appbookingroom.model.Response;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -18,12 +20,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class LoginActivity extends AppCompatActivity {
     private static final Logger logger = Logger.getLogger(String.valueOf(LoginActivity.class));
@@ -53,15 +61,29 @@ public class LoginActivity extends AppCompatActivity {
             RequestParams params = new RequestParams();
             params.put("username",txtEmail.getText());
             params.put("password",txtPassword.getText());
+//            JSONObject json = new JSONObject();
+//            try {
+//                json.put("username",txtEmail.getText());
+//                json.put("password",txtPassword.getText());
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            StringEntity params = new StringEntity(json.toString(), "UTF-8");
             UserService.login(Constants.API.URL_LOGIN, params, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                   logger.info(responseBody.toString());
+                    Response response = CommonUtils.convertStringToResponse(new String(responseBody));
+                    if(response.getCode().equals(Constants.RESPONSE_CODE.SUCCESS)){
+                        logger.info(response.getData().toString());
+                    }else{
+
+                    }
+
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                    logger.warning(responseBody.toString());
+//                    logger.warning(responseBody.toString());
                 }
             });
 //            startActivity(new Intent(getApplicationContext(),ActivityParent.class));

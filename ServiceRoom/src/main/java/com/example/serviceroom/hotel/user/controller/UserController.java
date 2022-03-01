@@ -46,7 +46,7 @@ public class UserController {
 
     @PostMapping("/authenticate")
     public @ResponseBody
-    Response authentication(@RequestBody UserForm userForm){
+    Response authentication(UserForm userForm){
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(userForm.getUsername(), userForm.getPassword())
@@ -57,8 +57,6 @@ public class UserController {
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(userForm.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
-        Map<String, Object> data = new HashMap<>();
-        data.put("jwt", jwt);
-        return Response.success(Constants.RESPONSE_CODE.SUCCESS).withData(data);
+        return Response.success(Constants.RESPONSE_CODE.SUCCESS).withData(jwt);
     }
 }
