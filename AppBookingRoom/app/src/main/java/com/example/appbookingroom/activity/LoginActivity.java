@@ -6,23 +6,30 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.appbookingroom.R;
+import com.example.appbookingroom.common.Constants;
+import com.example.appbookingroom.common.UserService;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import java.util.logging.Logger;
+
+import cz.msebera.android.httpclient.Header;
 
 public class LoginActivity extends AppCompatActivity {
-
+    private static final Logger logger = Logger.getLogger(String.valueOf(LoginActivity.class));
     private static final int RC_SIGN_IN = 100;
     GoogleSignInClient mGoogleSignInClient;
+    private TextInputEditText txtEmail,txtPassword;
 
     private Button btnLogin;
 
@@ -32,16 +39,32 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 //        processLoginGoogle();
         init();
-//        event();
+        event();
     }
 
     private void init(){
         btnLogin = findViewById(R.id.btn_login);
+        txtEmail = findViewById(R.id.txtEmail);
+        txtPassword = findViewById(R.id.txtPassword);
     }
 
     private void event(){
         btnLogin.setOnClickListener(v->{
-            startActivity(new Intent(getApplicationContext(),ActivityParent.class));
+            RequestParams params = new RequestParams();
+            params.put("username",txtEmail.getText());
+            params.put("password",txtPassword.getText());
+            UserService.login(Constants.API.URL_LOGIN, params, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                   logger.info(responseBody.toString());
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    logger.warning(responseBody.toString());
+                }
+            });
+//            startActivity(new Intent(getApplicationContext(),ActivityParent.class));
         });
     }
 
