@@ -3,8 +3,12 @@
     <string name="title_hotel">Hotel Booking</string>
     <string name="title_info">We missed you! Login to get Started</string>
     <string name="title_email">Email Address</string>
+    <string name="title_username">Username</string>
     <string name="title_password">Password</string>
+    <string name="title_address">Address</string>
+    <string name="title_dob">Date of birth</string>
     <string name="title_btn_login">Login</string>
+    <string name="title_btn_Register">Register</string>
     <string name="title_btn_login_google">Login With Google</string>
     <string name="welcome">Welcome</string>
     <!-- TODO: Remove or change this placeholder text -->
