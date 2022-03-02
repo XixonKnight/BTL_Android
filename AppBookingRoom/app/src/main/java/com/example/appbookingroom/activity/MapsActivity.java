@@ -19,6 +19,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -34,7 +36,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.appbookingroom.R;
-import com.example.appbookingroom.databinding.ActivityMapsBinding;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -85,7 +86,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     LinearLayout tapactionlayout;
     View white_forground_view;
     View bottomSheet;
-    private EditText edSearch;
+    private AutoCompleteTextView edSearch;
     private boolean flagKeyBroadDone = false;
 
     @Override
@@ -166,6 +167,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
         event();
+        configDataSearchDemo();
+    }
+
+    private void configDataSearchDemo(){
+        String[] data = getResources().getStringArray(R.array.search_demo);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.item_search,data);
+        edSearch.setAdapter(arrayAdapter);
+
     }
 
     private void event() {
@@ -215,7 +224,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 final int DRAWABLE_RIGHT = 2;
                 final int DRAWABLE_BOTTOM = 3;
 
-                if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getAction() == MotionEvent.ACTION_UP && Objects.nonNull(edSearch.getCompoundDrawables()[DRAWABLE_RIGHT])) {
                     if (event.getRawX() >= (edSearch.getRight() - edSearch.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                         edSearch.setText("");
                         edSearch.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);

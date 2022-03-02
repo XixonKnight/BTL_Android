@@ -20,4 +20,16 @@
     <string name="str_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="search_here">Search here...</string>
+
+    <string-array name="search_demo">
+        <item>Java</item>
+        <item>PHP</item>
+        <item>C/C++</item>
+        <item>Python</item>
+        <item>Ruby</item>
+        <item>Angular</item>
+        <item>React</item>
+        <item>VueJs</item>
+        <item>JavaScript</item>
+    </string-array>
 </resources>

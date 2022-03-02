@@ -41,7 +41,7 @@
                         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                         app:titleTextColor="@color/grey">
 
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/edSearch"
                             android:scrollHorizontally="true"
                             android:maxLines="1"
@@ -50,6 +50,7 @@
                             android:textColor="@color/grey"
                             android:textColorHint="@color/grey"
                             android:inputType="text"
+                            android:completionThreshold="1"
                             android:hint="@string/search_here" />
                     </androidx.appcompat.widget.Toolbar>
 
