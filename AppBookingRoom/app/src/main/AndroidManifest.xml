@@ -31,10 +31,17 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDO_Uxg2RidRfPYGsAmvhPAK7FbvLLzQJk" />
 
+<!--        <meta-data android:name="android.app.searchable"-->
+<!--        android:resource="@xml/searchable" />-->
         <activity
             android:name=".activity.MapsActivity"
             android:exported="false"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".activity.ActivityInfoHotel"
             android:exported="false" />
