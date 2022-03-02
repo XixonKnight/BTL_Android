@@ -2,17 +2,27 @@ package com.example.appbookingroom.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,6 +56,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Objects;
+
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -73,7 +85,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     LinearLayout tapactionlayout;
     View white_forground_view;
     View bottomSheet;
-
+    private EditText edSearch;
+    private boolean flagKeyBroadDone = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +98,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         tapactionlayout = (LinearLayout) findViewById(R.id.tap_action_layout);
         bottomSheet = findViewById(R.id.bottom_sheet1);
+        edSearch = findViewById(R.id.edSearch);
         mBottomSheetBehavior1 = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehavior1.setPeekHeight(120);
         mBottomSheetBehavior1.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -151,7 +165,72 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 getCurrentLocation();
             }
         });
+        event();
+    }
 
+    private void event() {
+        edSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (Objects.nonNull(charSequence)) {
+                    edSearch.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_clear, 0);
+                    eventClear();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        edSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent keyEvent) {
+                if ((actionId & EditorInfo.IME_MASK_ACTION) != 0) {
+                    Toast.makeText(MapsActivity.this, "done", Toast.LENGTH_SHORT).show();
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    flagKeyBroadDone = true;
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        });
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void eventClear(){
+        edSearch.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (edSearch.getRight() - edSearch.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        edSearch.setText("");
+                        edSearch.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                       if (flagKeyBroadDone){
+                           InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                           imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                           flagKeyBroadDone = false;
+                       }
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+        });
     }
 
     // The callback for the management of the user settings regarding location
