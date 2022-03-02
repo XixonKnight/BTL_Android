@@ -4,9 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/dungm/Desktop/WEB/BTL_Android/AppBookingRoom/app/src/main/res/drawable/ic_email.xml" value="0.246" />
+        <entry key="..\:/Users/dungm/Desktop/WEB/BTL_Android/AppBookingRoom/app/src/main/res/drawable/ic_location_black.xml" value="0.2105" />
         <entry key="..\:/Users/dungm/Desktop/WEB/BTL_Android/AppBookingRoom/app/src/main/res/drawable/style_edit_text.xml" value="0.246" />
+        <entry key="..\:/Users/dungm/Desktop/WEB/BTL_Android/AppBookingRoom/app/src/main/res/drawable/style_edit_text_search.xml" value="0.2105" />
         <entry key="..\:/Users/dungm/Desktop/WEB/BTL_Android/AppBookingRoom/app/src/main/res/layout/activity_forgort_password.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/dungm/Desktop/WEB/BTL_Android/AppBookingRoom/app/src/main/res/layout/activity_forgot_password.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/dungm/Desktop/WEB/BTL_Android/AppBookingRoom/app/src/main/res/layout/activity_info_hotel.xml" value="0.22" />
         <entry key="..\:/Users/dungm/Desktop/WEB/BTL_Android/AppBookingRoom/app/src/main/res/layout/activity_login.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/dungm/Desktop/WEB/BTL_Android/AppBookingRoom/app/src/main/res/layout/activity_parent.xml" value="0.2552083333333333" />
         <entry key="..\:/Users/dungm/Desktop/WEB/BTL_Android/AppBookingRoom/app/src/main/res/layout/activity_register.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/dungm/Desktop/WEB/BTL_Android/AppBookingRoom/app/src/main/res/layout/fragment_home.xml" value="0.2552083333333333" />
         <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/AppBookingRoom/app/src/main/res/drawable/card_backgroud.xml" value="0.1855" />

@@ -1,18 +1,15 @@
 package com.example.appbookingroom.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appbookingroom.R;
-import com.example.appbookingroom.common.CommonUtils;
-import com.example.appbookingroom.common.Constants;
-import com.example.appbookingroom.common.UserService;
-import com.example.appbookingroom.model.Response;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -20,24 +17,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.gson.Gson;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.function.Supplier;
 import java.util.logging.Logger;
-
-import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class LoginActivity extends AppCompatActivity {
     private static final Logger logger = Logger.getLogger(String.valueOf(LoginActivity.class));
     private static final int RC_SIGN_IN = 100;
     GoogleSignInClient mGoogleSignInClient;
-    private TextInputEditText txtEmail,txtPassword;
+    private TextInputEditText txtEmail, txtPassword;
+    private TextView txtRegister;
 
     private Button btnLogin;
 
@@ -50,47 +38,46 @@ public class LoginActivity extends AppCompatActivity {
         event();
     }
 
-    private void init(){
+    private void init() {
         btnLogin = findViewById(R.id.btn_login);
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPassword);
+        txtRegister = findViewById(R.id.register);
     }
 
-    private void event(){
-        btnLogin.setOnClickListener(v->{
-            RequestParams params = new RequestParams();
-            params.put("username",txtEmail.getText());
-            params.put("password",txtPassword.getText());
-//            JSONObject json = new JSONObject();
-//            try {
-//                json.put("username",txtEmail.getText());
-//                json.put("password",txtPassword.getText());
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//            StringEntity params = new StringEntity(json.toString(), "UTF-8");
-            UserService.login(Constants.API.URL_LOGIN, params, new AsyncHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                    Response response = CommonUtils.convertStringToResponse(new String(responseBody));
-                    if(response.getCode().equals(Constants.RESPONSE_CODE.SUCCESS)){
-                        logger.info(response.getData().toString());
-                    }else{
-
-                    }
-
-                }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-//                    logger.warning(responseBody.toString());
-                }
-            });
-//            startActivity(new Intent(getApplicationContext(),ActivityParent.class));
+    private void event() {
+        btnLogin.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), ActivityParent.class));
+        });
+        txtRegister.setOnClickListener(v->{
+            startActivity(new Intent(getApplicationContext(),ActivityRegister.class));
         });
     }
+//    private void event(){
+//        btnLogin.setOnClickListener(v->{
+//            RequestParams params = new RequestParams();
+//            params.put("username",txtEmail.getText());
+//            params.put("password",txtPassword.getText());
+//            UserService.login(Constants.API.URL_LOGIN, params, new AsyncHttpResponseHandler() {
+//                @Override
+//                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+//                    Response response = CommonUtils.convertStringToResponse(new String(responseBody));
+//                    if(response.getCode().equals(Constants.RESPONSE_CODE.SUCCESS)){
+//                        logger.info(response.getData().toString());
+//                    }else{
+//
+//                    }
+//
+//                }
+//
+//                @Override
+//                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+//                }
+//            });
+//        });
+//    }
 
-    private void processLoginGoogle(){
+    private void processLoginGoogle() {
         // Configure sign-in to request the user's ID, email address, and basic
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -133,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
             handleSignInResult(task);
         }
     }
+
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
