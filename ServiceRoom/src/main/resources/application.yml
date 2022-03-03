@@ -21,7 +21,7 @@ spring:
       #    url: jdbc:mysql://b5941b2d075b5d:cebfac38@us-cdbr-east-05.cleardb.net/heroku_9097815b6cfd14d?reconnect=true?enabledTLSProtocols=TLSv1.2
     username: root
 #    password: 123456
-    password: nhanbn98
+    password: tuanbmhd2001
       #    username: b5941b2d075b5d
 
 #    password: cebfac38
