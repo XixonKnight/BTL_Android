@@ -37,4 +37,6 @@ public class RoomController {
         }
         return new Response(Constants.RESPONSE_TYPE.ERROR, Constants.RESPONSE_CODE.ERROR);
     }
+
+//    public
 }
