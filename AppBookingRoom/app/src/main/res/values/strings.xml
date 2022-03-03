@@ -23,6 +23,9 @@
     <string name="google_maps_api">AIzaSyDQWA3IPLOYOUnJ9REi4fDK1TKIX7ePl1s</string>
     <string name="book_now">Book Now</string>
     <string name="comment">Comment</string>
+    <string name="username">Username</string>
+    <string name="please_wait">Please wait</string>
+    <string name="remember_me">Remember me</string>
 
     <string-array name="search_demo">
         <item>Java</item>

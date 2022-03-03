@@ -74,7 +74,7 @@ public class Constants {
     }
 
     public static class MESSAGE {
-        public static final String LOGIN_FAIL="account.incorrect";
+        public static final String LOGIN_FAIL="Incorrect username or password";
         public static final String UPLOAD_ERROR="upload.fail";
         public static final String DELETE_ERROR="delete.fail";
     }

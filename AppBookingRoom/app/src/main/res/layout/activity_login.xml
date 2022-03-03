@@ -61,13 +61,13 @@
                 android:layout_marginTop="20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtEmail"
+                    android:id="@+id/txtUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/style_edit_text"
-                    android:drawableStart="@drawable/ic_email"
+                    android:drawableStart="@drawable/ic_person"
                     android:drawablePadding="10dp"
-                    android:hint="@string/title_email"
+                    android:hint="@string/username"
                     android:paddingStart="20dp"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />
@@ -101,9 +101,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:buttonTint="@color/white"
-                android:text="Remeber me"
+                android:text="@string/remember_me"
                 android:textSize="16dp" />
 
             <LinearLayout
@@ -138,6 +138,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLoginForGoogle"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:background="@drawable/style_btn_login_google"
@@ -150,7 +151,8 @@
                 android:paddingLeft="30dp"
                 android:drawableStart="@drawable/ic_google"
                 android:text="@string/title_btn_login_google"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                tools:ignore="RtlSymmetry" />
         </LinearLayout>
     </LinearLayout>
 

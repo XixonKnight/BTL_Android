@@ -2,6 +2,7 @@ server:
   port: 80
   servlet:
     context-path: /
+  address: 192.168.1.11
 #spring-hibernate for mysql
 spring:
 #  profiles:
@@ -20,8 +21,9 @@ spring:
 #    url: jdbc:mysql://localhost:3308/db_bookingroom?useUnicode=yes&characterEncoding=UTF-8
       #    url: jdbc:mysql://b5941b2d075b5d:cebfac38@us-cdbr-east-05.cleardb.net/heroku_9097815b6cfd14d?reconnect=true?enabledTLSProtocols=TLSv1.2
     username: root
+    password: nhanbn98
 #    password: 123456
-    password: tuanbmhd2001
+#    password: tuanbmhd2001
       #    username: b5941b2d075b5d
 
 #    password: cebfac38

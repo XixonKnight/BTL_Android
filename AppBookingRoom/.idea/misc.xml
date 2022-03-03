@@ -43,10 +43,14 @@
         <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/drawable/ic_train_white_24dp.xml" value="0.125" />
         <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/drawable/setlightimg.xml" value="0.125" />
         <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/drawable/style_btn_my_location.xml" value="0.125" />
+        <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/drawable/style_custom_dialog.xml" value="0.125" />
         <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/drawable/style_edit_text.xml" value="0.125" />
+        <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/drawable/style_edit_text_search.xml" value="0.125" />
+        <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/layout/activity_login.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/layout/activity_maps.xml" value="0.21" />
         <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/layout/activity_parent.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/layout/bottomsheet_layout.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/layout/custom_dialog.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/layout/fragment_home.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/layout/item_search.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/nhanb/OneDrive/Desktop/BTL-Android/BTL_Android/AppBookingRoom/app/src/main/res/menu/menu.xml" value="0.18229166666666666" />
