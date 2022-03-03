@@ -13,7 +13,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="300dp"
             android:background="@drawable/img_hotel"
             android:scaleType="fitXY"
             tools:ignore="UselessParent">
@@ -37,11 +37,12 @@
                         android:background="@drawable/ic_chevron_left" />
 
                     <TextView
+                        android:id="@+id/icHeart"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
                         android:background="@drawable/ic_heart" />
                 </RelativeLayout>
             </LinearLayout>
@@ -50,7 +51,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="320dp"
+            android:layout_marginTop="280dp"
             android:background="@drawable/card_background_main"
             android:elevation="36dp"
             android:orientation="vertical"
@@ -76,8 +77,8 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_location_black"
                     android:text="@string/welcome"
-                    android:textColor="#5D4A44"
-                    android:textSize="16dp" />
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -113,77 +114,115 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:layout_weight="2">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_star" />
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_star" />
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_star" />
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_star" />
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_star" />
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_star" />
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_star" />
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_star" />
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_star" />
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_star" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/review"
+                        android:text="@string/comment"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
+
             </LinearLayout>
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/info_hotel"
-                android:paddingBottom="50dp"
-                android:fillViewport="true">
+                android:fillViewport="true"
+                android:paddingBottom="100dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingBottom="20dp">
 
                     <TextView
                         android:id="@+id/description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/str_lorem"
-                        android:textColor="@color/black"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="4sp"
                         android:maxLines="3"
-                        android:ellipsize = "end"
-                        android:textSize="17dp" />
+                        android:text="@string/str_lorem"
+
+                        android:textColor="@color/black"
+                        android:textSize="12dp" />
+
                     <TextView
                         android:id="@+id/readMore"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/read_more"
-                        android:textColor="#2d5a7d"
                         android:layout_marginTop="10dp"
-                        android:textSize="23dp" />
+                        android:text="@string/read_more"
+                        android:textColor="@color/blue"
+                        android:textSize="15dp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:height="60dp"
+                        android:background="@drawable/style_btn_login"
+                        android:gravity="center"
+                        android:text="@string/book_now"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
-
         </RelativeLayout>
-    <TextView
+
+    <LinearLayout
+        android:id="@+id/option_hotel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/style_edit_text"
-        android:text="@string/welcome"
-        android:textColor="@color/black"
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:translationZ="99dp"
         android:layout_marginBottom="20dp"
-        android:layout_height="wrap_content"/>
+        android:height="80dp"
+        android:background="@drawable/style_menu_info_hotel"
+        android:orientation="horizontal"
+        android:text="@string/welcome"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:translationZ="99dp">
+
+    </LinearLayout>
 </RelativeLayout>

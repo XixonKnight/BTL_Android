@@ -64,8 +64,8 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:hint="@string/title_search">
+                        app:hintEnabled="false"
+                        android:layout_marginTop="5dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/txtSearch"
@@ -76,8 +76,8 @@
                             android:drawablePadding="10dp"
                             android:hint="@string/title_main"
                             android:paddingStart="20dp"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/black"
+                            android:textColor="@color/grey"
+                            android:textColorHint="@color/grey"
                             android:textSize="15dp" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
