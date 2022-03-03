@@ -27,32 +27,20 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:minHeight="?attr/actionBarSize"
-                    android:padding="15dp"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-                    <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/toolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:background="@android:color/white"
-                        android:minHeight="?attr/actionBarSize"
-                        app:layout_collapseMode="pin"
-                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                        app:titleTextColor="@color/grey">
-
-                        <AutoCompleteTextView
-                            android:id="@+id/edSearch"
-                            android:scrollHorizontally="true"
-                            android:maxLines="1"
+                        <com.mancj.materialsearchbar.MaterialSearchBar
+                            style="@style/MaterialSearchBarLight"
+                            app:mt_speechMode="false"
+                            app:mt_hint="Search a place"
+                            app:mt_maxSuggestionsCount="10"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:textColor="@color/grey"
-                            android:textColorHint="@color/grey"
-                            android:inputType="text"
-                            android:completionThreshold="1"
-                            android:hint="@string/search_here" />
-                    </androidx.appcompat.widget.Toolbar>
+                            android:layout_height="wrap_content"
+                            android:id="@+id/searchPlace"
+                            android:layout_margin="16dp"
+                            app:mt_navIconEnabled="true"
+                            android:elevation="5dp"
+                            android:outlineProvider="bounds"
+                            app:mt_placeholder="Search a place"/>
 
                 </com.google.android.material.appbar.AppBarLayout>
 
@@ -62,7 +50,7 @@
                     android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    sothree:context="com.example.codingmountain.googlemap_clone_bottomsheetlayout.MapsActivity" />
+                    sothree:context="com.example.appbookingroom.activity.MapsActivity" />
 
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton

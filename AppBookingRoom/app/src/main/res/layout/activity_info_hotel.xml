@@ -107,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:text="$800"
                         android:textColor="#1B6CA8"
-                        android:textSize="70dp" />
+                        android:textSize="60dp" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -17,7 +17,7 @@ public class Constants {
         public static final String DOCUMENT_TYPE_EXISTED = "documentTypeExits";
         public static final String PARAMETER_USED = "parameterUsed";
     }
-
+    public static final float DEFAULT_ZOOM = 15;
 //    public static final String IP_ADDRESS = "172.30.128.1";
     public static final String IP_ADDRESS = "192.168.1.11";
 

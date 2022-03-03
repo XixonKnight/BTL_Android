@@ -29,7 +29,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDO_Uxg2RidRfPYGsAmvhPAK7FbvLLzQJk" />
+            android:value="AIzaSyDQWA3IPLOYOUnJ9REi4fDK1TKIX7ePl1s" />
 
 <!--        <meta-data android:name="android.app.searchable"-->
 <!--        android:resource="@xml/searchable" />-->
