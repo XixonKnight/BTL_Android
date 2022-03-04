@@ -38,6 +38,7 @@ public class Constants {
         public static final int RC_RECOVERABLE = 9002;
         public static final int RC_GET_TOKEN = 9003;
         public static final String CLIENT_ID = "260452948395-i6107ekmtfvg6lt91o5aijjl7t11bq9q.apps.googleusercontent.com";
+        public static final String CLIENT_ID_WEB = "260452948395-2d7tf3rpodggmjvf9a8sp350rlubaitt.apps.googleusercontent.com";
 
 
     }

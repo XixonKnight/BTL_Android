@@ -27,6 +27,7 @@
     <string name="please_wait">Please wait</string>
     <string name="remember_me">Remember me</string>
 
+
     <string-array name="search_demo">
         <item>Java</item>
         <item>PHP</item>
