@@ -1,5 +1,7 @@
 package com.example.serviceroom.hotel.user.form;
 
+import com.example.serviceroom.common.Constants;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +16,8 @@ public class UserForm {
     private String gmail;
     private String password;
     private String address;
-    private Date dateOfBirth;
     private String gender;
     private Date createdDate;
     private Date updatedDate;
+    private String strDateOfBirth;
 }

@@ -111,45 +111,45 @@ public class LoginActivity extends AppCompatActivity {
         cbRemember.setChecked(sharedPreferences.getBoolean(Constants.KEY.REMEMBER, false));
     }
 
-    //    private void event() {
-//        btnLogin.setOnClickListener(v -> {
-//            loadingDialog.show();
-////            startActivity(new Intent(getApplicationContext(), ActivityParent.class));
-//        });
-//        txtRegister.setOnClickListener(v->{
-//            startActivity(new Intent(getApplicationContext(),ActivityRegister.class));
-//        });
-//    }
-    private void event() {
+        private void event() {
         btnLogin.setOnClickListener(v -> {
-            configRemember();
             loadingDialog.show();
-            RequestParams params = new RequestParams();
-            params.put("username", txtUsername.getText());
-            params.put("password", txtPassword.getText());
-            UserService.login(Constants.API.URL_LOGIN, params, new AsyncHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                    Response response = CommonUtils.convertStringToResponse(new String(responseBody));
-                    if (response.getCode().equals(Constants.RESPONSE_CODE.SUCCESS)) {
-                        CommonUtils.saveValueToSharedPreferences(sharedPreferences, Constants.KEY.TOKEN, response.getData().toString());
-                    } else {
-                        Toast.makeText(getApplicationContext(), response.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                    Toast.makeText(getApplicationContext(), Constants.MESSAGE.LOGIN_FAIL, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFinish() {
-                    loadingDialog.hide();
-                }
-            });
+//            startActivity(new Intent(getApplicationContext(), ActivityParent.class));
+        });
+        txtRegister.setOnClickListener(v->{
+            startActivity(new Intent(getApplicationContext(),ActivityRegister.class));
         });
     }
+//    private void event() {
+//        btnLogin.setOnClickListener(v -> {
+//            configRemember();
+//            loadingDialog.show();
+//            RequestParams params = new RequestParams();
+//            params.put("username", txtUsername.getText());
+//            params.put("password", txtPassword.getText());
+//            UserService.login(Constants.API.URL_LOGIN, params, new AsyncHttpResponseHandler() {
+//                @Override
+//                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+//                    Response response = CommonUtils.convertStringToResponse(new String(responseBody));
+//                    if (response.getCode().equals(Constants.RESPONSE_CODE.SUCCESS)) {
+//                        CommonUtils.saveValueToSharedPreferences(sharedPreferences, Constants.KEY.TOKEN, response.getData().toString());
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), response.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+//                    Toast.makeText(getApplicationContext(), Constants.MESSAGE.LOGIN_FAIL, Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onFinish() {
+//                    loadingDialog.hide();
+//                }
+//            });
+//        });
+//    }
 
     private void configRemember() {
         if (cbRemember.isChecked()) {

@@ -2,6 +2,7 @@ package com.example.appbookingroom.common;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -10,9 +11,15 @@ import android.widget.TextView;
 import com.example.appbookingroom.model.Response;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+
+import cz.msebera.android.httpclient.entity.StringEntity;
+
 public class CommonUtils {
     /**
-     *
      * @param string
      * @return
      */
@@ -22,7 +29,6 @@ public class CommonUtils {
     }
 
     /**
-     *
      * @param context
      * @param urlResource
      * @return
@@ -37,7 +43,6 @@ public class CommonUtils {
     }
 
     /**
-     *
      * @param context
      * @param id
      * @param action
@@ -53,19 +58,17 @@ public class CommonUtils {
     }
 
     /**
-     *
      * @param sharedPreferences
      * @param key
      * @param value
      */
-    public static void saveValueToSharedPreferences(SharedPreferences sharedPreferences,String key,String value){
+    public static void saveValueToSharedPreferences(SharedPreferences sharedPreferences, String key, String value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key,value);
+        editor.putString(key, value);
         editor.apply();
     }
 
     /**
-     *
      * @param sharedPreferences
      * @param key
      * @param value
@@ -77,14 +80,24 @@ public class CommonUtils {
     }
 
     /**
-     *
      * @param sharedPreferences
      * @param key
      */
-    public static void removeValueFromSharedPreferences(SharedPreferences sharedPreferences, String key){
+    public static void removeValueFromSharedPreferences(SharedPreferences sharedPreferences, String key) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(key);
         editor.apply();
+    }
+
+    public static StringEntity convertObjectToStringEntity(Object object) {
+        try {
+            String strObj = new Gson().toJson(object);
+            JSONObject jsonObject = new JSONObject(strObj);
+            return new StringEntity(jsonObject.toString());
+        } catch (JSONException | UnsupportedEncodingException e) {
+            Log.e("ConvertObjToStringEntity", e.getMessage(), e);
+        }
+        return null;
     }
 
 }

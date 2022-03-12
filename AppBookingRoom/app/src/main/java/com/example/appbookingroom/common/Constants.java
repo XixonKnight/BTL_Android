@@ -3,6 +3,7 @@ package com.example.appbookingroom.common;
 public class Constants {
 
     public static final String SUBJECT_SEND = "Booking Room";
+    public static final String CONTENT_TYPE_JSON = "application/json";
 
     public static class RESPONSE_CODE {
         public static final String SUCCESS = "success";
@@ -27,7 +28,15 @@ public class Constants {
 
     public static class MESSAGE {
         public static final String LOGIN_FAIL = "Login fail";
+        public static final String REGISTER_FAIL = "Register fail";
+        public static final String REGISTER_SUCCESS = "Register success";
         public static final String CREATED_TEXT = "CREATED_TEXT";
+        public static final String ERROR_USERNAME = "Username invalid";
+        public static final String ERROR_PASSWORD = "Password invalid";
+        public static final String ERROR_EMAIL = "Email invalid";
+        public static final String ERROR_GENDER = "Gender invalid";
+        public static final String ERROR_ADDRESS = "Address invalid";
+        public static final String ERROR_DOB = "Date of birth invalid";
     }
 
     public static class GOOGLE {
@@ -52,7 +61,9 @@ public class Constants {
     }
 
     //    public static final String IP_ADDRESS = "172.30.128.1";
-    public static final String IP_ADDRESS = "192.168.1.11";
+//    public static final String IP_ADDRESS = "192.168.1.11";
+    public static final String IP_ADDRESS = "192.168.0.103";
+    public static final String FORMAT_DATE = "yyyy-MM-dd";
 
 
     public static class API {

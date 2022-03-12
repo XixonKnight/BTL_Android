@@ -2,7 +2,7 @@ server:
   port: 80
   servlet:
     context-path: /
-  address: 192.168.1.11
+  address: 192.168.0.103
 #spring-hibernate for mysql
 spring:
 #  profiles:

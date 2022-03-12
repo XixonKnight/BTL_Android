@@ -114,7 +114,7 @@ public class Constants {
         String EXPORT_FOLDER = CommonUtil.getConfig("exportFolder");
         //Thu muc chua file tam de import
         String IMPORT_FOLDER = "/share/import/";
-        String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm:ss";
+        String DATE_TIME_FORMAT = "yyyy-MM-dd";
     }
 
     public enum attributeType {

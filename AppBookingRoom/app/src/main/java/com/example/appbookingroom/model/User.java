@@ -9,10 +9,11 @@ public class User {
     private String gmail;
     private String password;
     private String address;
-    private Date dateOfBirth;
+    private String strDateOfBirth;
     private String gender;
     private Date createdDate;
     private Date updatedDate;
+
 
     public int getId() {
         return id;
@@ -62,20 +63,20 @@ public class User {
         this.address = address;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public String getGender() {
         return gender;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getStrDateOfBirth() {
+        return strDateOfBirth;
+    }
+
+    public void setStrDateOfBirth(String strDateOfBirth) {
+        this.strDateOfBirth = strDateOfBirth;
     }
 
     public Date getCreatedDate() {
