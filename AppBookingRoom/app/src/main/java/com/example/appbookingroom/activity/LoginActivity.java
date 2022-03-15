@@ -22,7 +22,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.appbookingroom.R;
 import com.example.appbookingroom.common.CommonUtils;
 import com.example.appbookingroom.common.Constants;
+import com.example.appbookingroom.common.UserService;
 import com.example.appbookingroom.config.LoadingDialog;
+import com.example.appbookingroom.model.Response;
+import com.example.appbookingroom.model.User;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -44,6 +47,8 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.people.v1.PeopleService;
 import com.google.api.services.people.v1.model.ListConnectionsResponse;
 import com.google.api.services.people.v1.model.Person;
+import com.google.gson.internal.LinkedTreeMap;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -51,6 +56,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
+
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class LoginActivity extends AppCompatActivity {
     private static final Logger logger = Logger.getLogger(String.valueOf(LoginActivity.class));
@@ -105,47 +113,54 @@ public class LoginActivity extends AppCompatActivity {
         cbRemember.setChecked(sharedPreferences.getBoolean(Constants.KEY.REMEMBER, false));
     }
 
-        private void event() {
-        btnLogin.setOnClickListener(v -> {
-            loadingDialog.show();
-//            startActivity(new Intent(getApplicationContext(), ActivityParent.class));
-        });
-        txtRegister.setOnClickListener(v->{
-            startActivity(new Intent(getApplicationContext(),ActivityRegister.class));
-        });
-    }
-//    private void event() {
+    //    private void event() {
 //        btnLogin.setOnClickListener(v -> {
 //            loadingDialog.show();
-//            configRemember();
-//            User user = new User();
-//            user.setUsername(txtUsername.getText().toString());
-//            user.setPassword(txtPassword.getText().toString());
-//            StringEntity body = CommonUtils.convertObjectToStringEntity(user);
-//            UserService.login(getApplicationContext(),Constants.API.URL_LOGIN, body, new AsyncHttpResponseHandler() {
-//                @Override
-//                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-//                    Response response = CommonUtils.convertStringToResponse(new String(responseBody));
-//                    if (response.getCode().equals(Constants.RESPONSE_CODE.SUCCESS)) {
-//                        CommonUtils.saveValueToSharedPreferences(sharedPreferences, Constants.KEY.TOKEN, response.getData().toString());
-//                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), response.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-//                    Toast.makeText(getApplicationContext(), Constants.MESSAGE.LOGIN_FAIL, Toast.LENGTH_SHORT).show();
-//                }
-//
-//                @Override
-//                public void onFinish() {
-//                    loadingDialog.hide();
-//                }
-//            });
+////            startActivity(new Intent(getApplicationContext(), ActivityParent.class));
+//        });
+//        txtRegister.setOnClickListener(v -> {
+//            startActivity(new Intent(getApplicationContext(), ActivityRegister.class));
 //        });
 //    }
+    private void event() {
+        btnLogin.setOnClickListener(v -> {
+            loadingDialog.show();
+            configRemember();
+            User user = new User();
+            user.setUsername(txtUsername.getText().toString());
+            user.setPassword(txtPassword.getText().toString());
+            StringEntity body = CommonUtils.convertObjectToStringEntity(user);
+            UserService.login(getApplicationContext(), Constants.API.URL_LOGIN, body, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                    Response response = CommonUtils.convertStringToResponse(new String(responseBody));
+                    if (response.getCode().equals(Constants.RESPONSE_CODE.SUCCESS)) {
+                        LinkedTreeMap<String, Object> data = (LinkedTreeMap<String, Object>) response.getData();
+//                        User dataUser = (User) CommonUtils.convertJsonToObject(data.get(Constants.KEY.USER).toString(), User.class).get(0);
+                        CommonUtils.saveValueToSharedPreferences(sharedPreferences, (String) data.get(Constants.KEY.TOKEN), response.getData().toString());
+                        Intent intent = new Intent(getApplicationContext(), ActivityParent.class);
+//                        intent.putExtra(Constants.KEY.USER, dataUser);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getApplicationContext(), response.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    Toast.makeText(getApplicationContext(), Constants.MESSAGE.LOGIN_FAIL, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFinish() {
+                    loadingDialog.hide();
+                }
+            });
+        });
+        txtRegister.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), ActivityRegister.class));
+        });
+    }
 
     private void configRemember() {
         if (cbRemember.isChecked()) {

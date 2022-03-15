@@ -58,6 +58,7 @@ public class Constants {
         public static final String REMEMBER = "REMEMBER";
         public static final String ACCOUNT = "ACCOUNT";
         public static final String TOKEN = "TOKEN";
+        public static final String USER = "USER";
 
     }
 

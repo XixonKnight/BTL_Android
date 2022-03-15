@@ -10,11 +10,14 @@ import android.widget.TextView;
 
 import com.example.appbookingroom.model.Response;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.List;
 
 import cz.msebera.android.httpclient.entity.StringEntity;
 
@@ -99,5 +102,16 @@ public class CommonUtils {
         }
         return null;
     }
+
+    public static <T> List<T> convertJsonToObject(String json, Class<T> clazz) {
+        try {
+            T[] result = (T[]) new Gson().fromJson(json, clazz);
+            return Arrays.asList(result);
+        } catch (JsonSyntaxException e) {
+            Log.d("convertJsonToObject", e.getMessage(),e);
+        }
+        return null;
+    }
+
 
 }
