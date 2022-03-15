@@ -32,7 +32,7 @@ public class UserBO {
     private String address;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private Date dob;
 
     @Column(name = "gender")
     private String gender;

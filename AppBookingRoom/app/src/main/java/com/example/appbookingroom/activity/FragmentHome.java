@@ -40,7 +40,7 @@ public class FragmentHome extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageView = (ImageView) view.findViewById(R.id.btn_menu);
+//        imageView = (ImageView) view.findViewById(R.id.btn_menu);
         lstViewHotel = (RecyclerView) view.findViewById(R.id.lst_view_hotel);
         List<Hotel> lstHotel = new ArrayList<>();
         lstHotel.add(new Hotel("abc"));
