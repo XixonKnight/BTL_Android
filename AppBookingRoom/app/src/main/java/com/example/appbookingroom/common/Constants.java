@@ -61,14 +61,12 @@ public class Constants {
 
     }
 
-    //    public static final String IP_ADDRESS = "172.30.128.1";
-//    public static final String IP_ADDRESS = "192.168.1.11";
-    public static final String IP_ADDRESS = "192.168.0.103";
+    public static final String DOMAIN_ADDRESS = "https://service-booking-room.herokuapp.com";
     public static final String FORMAT_DATE = "yyyy-MM-dd";
 
 
     public static class API {
-        public static final String URL_CREATE_USER = "http://" + IP_ADDRESS + "/api/user/created";
-        public static final String URL_LOGIN = "http://" + IP_ADDRESS + "/api/user/authenticate";
+        public static final String URL_CREATE_USER = DOMAIN_ADDRESS + "/api/user/saveOrUpdate";
+        public static final String URL_LOGIN = DOMAIN_ADDRESS + "/api/user/authenticate";
     }
 }

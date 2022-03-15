@@ -22,9 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.appbookingroom.R;
 import com.example.appbookingroom.common.CommonUtils;
 import com.example.appbookingroom.common.Constants;
-import com.example.appbookingroom.common.UserService;
 import com.example.appbookingroom.config.LoadingDialog;
-import com.example.appbookingroom.model.Response;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -46,8 +44,6 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.people.v1.PeopleService;
 import com.google.api.services.people.v1.model.ListConnectionsResponse;
 import com.google.api.services.people.v1.model.Person;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -55,8 +51,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
-
-import cz.msebera.android.httpclient.Header;
 
 public class LoginActivity extends AppCompatActivity {
     private static final Logger logger = Logger.getLogger(String.valueOf(LoginActivity.class));
@@ -122,17 +116,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 //    private void event() {
 //        btnLogin.setOnClickListener(v -> {
-//            configRemember();
 //            loadingDialog.show();
-//            RequestParams params = new RequestParams();
-//            params.put("username", txtUsername.getText());
-//            params.put("password", txtPassword.getText());
-//            UserService.login(Constants.API.URL_LOGIN, params, new AsyncHttpResponseHandler() {
+//            configRemember();
+//            User user = new User();
+//            user.setUsername(txtUsername.getText().toString());
+//            user.setPassword(txtPassword.getText().toString());
+//            StringEntity body = CommonUtils.convertObjectToStringEntity(user);
+//            UserService.login(getApplicationContext(),Constants.API.URL_LOGIN, body, new AsyncHttpResponseHandler() {
 //                @Override
 //                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 //                    Response response = CommonUtils.convertStringToResponse(new String(responseBody));
 //                    if (response.getCode().equals(Constants.RESPONSE_CODE.SUCCESS)) {
 //                        CommonUtils.saveValueToSharedPreferences(sharedPreferences, Constants.KEY.TOKEN, response.getData().toString());
+//                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 //                    } else {
 //                        Toast.makeText(getApplicationContext(), response.getMessage(), Toast.LENGTH_SHORT).show();
 //                    }

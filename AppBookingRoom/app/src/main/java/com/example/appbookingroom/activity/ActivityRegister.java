@@ -1,16 +1,15 @@
 package com.example.appbookingroom.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.appbookingroom.R;
 import com.example.appbookingroom.common.CommonUtils;
@@ -24,11 +23,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.TimeZone;
 
 import cz.msebera.android.httpclient.Header;
@@ -174,12 +170,7 @@ public class ActivityRegister extends AppCompatActivity {
             flag = false;
         }
         if (!txtDateOfBirth.getText().toString().isEmpty()) {
-//            try {
-//                Date dob = format.parse();
             user.setStrDateOfBirth(txtDateOfBirth.getText().toString());
-//            } catch (ParseException e) {
-//                Log.e/("ERROR get dob", e.getMessage(), e);
-//            }
         } else {
             lyDob.setError(Constants.MESSAGE.ERROR_EMAIL);
             flag = false;
