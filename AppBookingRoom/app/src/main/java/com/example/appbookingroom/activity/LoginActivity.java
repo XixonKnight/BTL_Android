@@ -30,8 +30,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
@@ -166,38 +166,32 @@ public class LoginActivity extends AppCompatActivity {
 
     //Process google
     private void processLoginGoogle() {
-        // Configure sign-in to request the user's ID, email address, and basic
-// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        // [START configure_signin]
+        // Configure sign-in to request offline access to the user's ID, basic
+        // profile, and Google Drive. The first time you request a code you will
+        // be able to exchange it for an access token and refresh token, which
+        // you should store. In subsequent calls, the code will only result in
+        // an access token. By asking for profile access (through
+        // DEFAULT_SIGN_IN) you will also get an ID Token as a result of the
+        // code exchange.
+        String serverClientId = getString(R.string.server_client_id);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestScopes(new Scope(Constants.GOOGLE.CONTACTS_SCOPE))
-//                .requestIdToken(Constants.GOOGLE.CLIENT_ID)
-//                .requestServerAuthCode(Constants.GOOGLE.CLIENT_ID)
+                .requestScopes(new Scope(Scopes.DRIVE_APPFOLDER))
+                .requestServerAuthCode(serverClientId)
                 .requestEmail()
                 .build();
+        // [END configure_signin]
 
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
-//                .enableAutoManage(getApplicationContext(), this)
-//                .addApi(Plus.API, Plus.PlusOptions.builder().build())
+        // Build GoogleAPIClient with the Google Sign-In API and the above options.
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+//                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
-//
-//        ConnectionResult c = mGoogleApiClient.blockingConnect();
-//
-//        if (c.isSuccess() && mGoogleApiClient.isConnected()) {
-//            mGoogleApiClient.cl();
-//        }
+        // [START build_client]
+        // Build a GoogleSignInClient with access to the Google Sign-In API and the
+        // options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
-        // Check for existing Google Sign In account, if the user is already signed in
-// the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        // Set the dimensions of the sign-in button.
-//        SignInButton signInButton = findViewById(R.id.btn_login);
-//        signInButton.setSize(SignInButton.SIZE_STANDARD);
-//
+        // [END build_client]
         btnLoginForGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -207,37 +201,16 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-//         Check if the user is already signed in and all required scopes are granted
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if (GoogleSignIn.hasPermissions(account, new Scope(Constants.GOOGLE.CONTACTS_SCOPE))) {
-//            updateUI(account);
-        } else {
-//            updateUI(null);
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelable(Constants.GOOGLE.KEY_ACCOUNT, mAccount);
-    }
 
     private void signIn() {
-//        if (mGoogleSignInClient != null && mGoogleSignInClient.isConnected()) {
-//            mGoogleSignInClient.clearDefaultAccountAndReconnect();
-//        }
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-
         startActivityForResult(signInIntent, Constants.GOOGLE.RC_SIGN_IN);
     }
 
-    protected void onRecoverableAuthException(UserRecoverableAuthIOException recoverableException) {
-        Log.w(TAG, "onRecoverableAuthException", recoverableException);
-        startActivityForResult(recoverableException.getIntent(), Constants.GOOGLE.RC_RECOVERABLE);
-    }
+//    protected void onRecoverableAuthException(UserRecoverableAuthIOException recoverableException) {
+//        Log.w(TAG, "onRecoverableAuthException", recoverableException);
+//        startActivityForResult(recoverableException.getIntent(), Constants.GOOGLE.RC_RECOVERABLE);
+//    }
 
     private void getContacts() {
         if (mAccount == null) {
@@ -254,56 +227,49 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+
         if (requestCode == Constants.GOOGLE.RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-        if (requestCode == Constants.GOOGLE.RC_RECOVERABLE) {
-            if (resultCode == RESULT_OK) {
-                getContacts();
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            Log.d(TAG, "onActivityResult:GET_AUTH_CODE:success:" + result.getStatus().isSuccess());
+
+            if (result.isSuccess()) {
+                // [START get_auth_code]
+                GoogleSignInAccount acct = result.getSignInAccount();
+                String authCode = acct.getServerAuthCode();
+
+                Log.d(TAG, authCode);
+                // Show signed-in UI.
+//                mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, authCode));
+//                updateUI(true);
+
+                // TODO(user): send code to server and exchange for access/refresh/ID tokens.
+                // [END get_auth_code]
             } else {
-//                Toast.makeText(this, R.string.msg_contacts_failed, Toast.LENGTH_SHORT).show();
+                // Show signed-out UI.
+//                updateUI(false);
             }
+//
+//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+//            handleSignInResult(task);
         }
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
 
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-//            if (Objects.nonNull(account)){
-//            String idToken = account.getIdToken();
-//            Log.w("mytag", idToken);
-            // TODO(developer): send ID Token to server and validate
 
-        } catch (ApiException e) {
-
-            Log.w("mytag", "handleSignInResult:error: " + e.getMessage(), e);
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if (acct != null) {
+            String personName = acct.getDisplayName();
+            String personGivenName = acct.getGivenName();
+            String personFamilyName = acct.getFamilyName();
+            String personEmail = acct.getEmail();
+            String personId = acct.getId();
+            Uri personPhoto = acct.getPhotoUrl();
         }
-
-//        try {
-//            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-//
-//
-//            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-//            if (acct != null) {
-//                String personName = acct.getDisplayName();
-//                String personGivenName = acct.getGivenName();
-//                String personFamilyName = acct.getFamilyName();
-//                String personEmail = acct.getEmail();
-//                String personId = acct.getId();
-//                Uri personPhoto = acct.getPhotoUrl();
-//            }
-//            // Signed in successfully, show authenticated UI.
-////            updateUI(account);
-//        } catch (ApiException e) {
-//            // The ApiException status code indicates the detailed failure reason.
-//            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-//            Log.d("signInResult:failed code=", e.getMessage());
-////            updateUI(null);
-//        }
+        // Signed in successfully, show authenticated UI.
+//            updateUI(account);
     }
 
 
@@ -343,7 +309,7 @@ public class LoginActivity extends AppCompatActivity {
 
             } catch (UserRecoverableAuthIOException recoverableException) {
                 if (mActivityRef.get() != null) {
-                    mActivityRef.get().onRecoverableAuthException(recoverableException);
+//                    mActivityRef.get().onRecoverableAuthException(recoverableException);
                 }
             } catch (IOException e) {
                 Log.w(TAG, "getContacts:exception", e);

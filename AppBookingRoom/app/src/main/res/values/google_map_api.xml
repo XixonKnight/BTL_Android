@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="server_client_id">260452948395-i6107ekmtfvg6lt91o5aijjl7t11bq9q.apps.googleusercontent.com</string>
+</resources>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "260452948395",
+    "project_id": "appbookingrom",
+    "storage_bucket": "appbookingrom.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260452948395:android:e8d815b8b7281c11e21aee",
+        "android_client_info": {
+          "package_name": "com.example.appbookingroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260452948395-i6107ekmtfvg6lt91o5aijjl7t11bq9q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appbookingroom",
+            "certificate_hash": "3a4bfbb5100f62f1ed3cdc15ee91477d07f7d5d6"
+          }
+        },
+        {
+          "client_id": "260452948395-2d7tf3rpodggmjvf9a8sp350rlubaitt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQWA3IPLOYOUnJ9REi4fDK1TKIX7ePl1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260452948395-2d7tf3rpodggmjvf9a8sp350rlubaitt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -33,6 +33,7 @@
     <string name="verify">Verify</string>
     <string name="clear">Clear</string>
 
+
     <string-array name="search_demo">
         <item>Java</item>
         <item>PHP</item>
