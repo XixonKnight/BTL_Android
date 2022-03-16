@@ -1,28 +1,16 @@
 package com.example.appbookingroom.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.appbookingroom.R;
-import com.example.appbookingroom.adapter.VPAdapter;
 import com.example.appbookingroom.databinding.ActivityParentBinding;
-import com.google.android.material.badge.BadgeDrawable;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabLayout;
 
 public class ActivityParent extends AppCompatActivity {
 
@@ -49,7 +37,7 @@ public class ActivityParent extends AppCompatActivity {
                             replaceFragment(new FragmentHome());
                             break;
                         case R.id.settings:
-                            replaceFragment(new Fragment2());
+                            replaceFragment(new FragmentSearch());
                             break;
                         case R.id.profile:
                             replaceFragment(new Fragment3());

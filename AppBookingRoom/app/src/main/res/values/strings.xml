@@ -32,6 +32,7 @@
     <string name="didn_t_receive_the_code">Didn\'t receive the code?</string>
     <string name="verify">Verify</string>
     <string name="clear">Clear</string>
+    <string name="explore">Explore</string>
 
 
     <string-array name="search_demo">

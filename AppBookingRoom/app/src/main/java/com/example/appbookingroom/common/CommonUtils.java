@@ -1,13 +1,18 @@
 package com.example.appbookingroom.common;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatButton;
+
+import com.example.appbookingroom.R;
 import com.example.appbookingroom.model.Response;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -58,6 +63,27 @@ public class CommonUtils {
         view.setText(id);
         view.setGravity(Gravity.CENTER);
         return view;
+    }
+
+
+    @SuppressLint("ResourceAsColor")
+    public static AppCompatButton createdButton(Context context, String id, String text){
+        AppCompatButton btn = new AppCompatButton(context);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(20,0,0,0);
+        btn.setLayoutParams(params);
+        btn.setText(text);
+        btn.setTag(id);
+        btn.setBackgroundResource(R.drawable.style_edit_text_search);
+        btn.setElevation(4);
+        btn.setTextColor(R.color.black);
+        btn.setPadding(50,30,50,30);
+        btn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
+        btn.setMinHeight(0);
+        btn.setMinWidth(0);
+        btn.setMinimumWidth(0);
+        btn.setMinimumHeight(0);
+        return btn;
     }
 
     /**
